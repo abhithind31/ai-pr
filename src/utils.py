@@ -88,6 +88,12 @@ def extract_jira_keys(text, project_keys):
     found_keys = re.findall(keys_pattern, text, re.IGNORECASE)
     return list(set(found_keys)) # Return unique keys
 
+    def format_name(first_name, last_name):
+        """Formats a first and last name into a single string."""
+        if not first_name or not last_name:
+            return "Invalid input"
+        return f"{last_name.strip()}, {first_name.strip()}"
+
 # --- Hunk Line to File Line Mapping ---
 def map_hunk_line_to_file_line(hunk_header, hunk_content, hunk_line_number):
     """Maps a line number within the hunk_content (1-based relative to hunk)
