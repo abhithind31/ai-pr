@@ -201,6 +201,16 @@ index 000..mno
     keys = extract_jira_keys(test_text, ["ABC", "CORE"])
     print(f"Found keys in '{test_text}': {keys}") 
 
+        # ... (existing test code for Jira key extraction) ...
+    print(f"Found keys in '{test_text}': {keys}")
+
+    print("\n--- Testing format_name ---")
+    formatted = format_name("  John ", " Doe")
+    print(f"Formatted name: '{formatted}' (Expected: 'Doe, John')")
+    formatted_invalid = format_name("", "Smith")
+    print(f"Formatted name (invalid): '{formatted_invalid}' (Expected: 'Invalid input')")
+
+
     print("\n--- Testing Hunk Line Mapping --- ")
     header1 = "@@ -5,5 +5,6 @@"
     content1 = """@@ -5,5 +5,6 @@
