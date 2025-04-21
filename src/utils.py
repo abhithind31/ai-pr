@@ -88,6 +88,12 @@ def extract_jira_keys(text, project_keys):
     found_keys = re.findall(keys_pattern, text, re.IGNORECASE)
     return list(set(found_keys)) # Return unique keys
 
+def format_name(first_name, last_name):
+    """Formats a first and last name into a single string."""
+    if not first_name or not last_name:
+        return "Invalid input"
+    return f"{last_name.strip()}, {first_name.strip()}"
+
 # --- Hunk Line to File Line Mapping ---
 def map_hunk_line_to_file_line(hunk_header, hunk_content, hunk_line_number):
     """Maps a line number within the hunk_content (1-based relative to hunk)
@@ -200,6 +206,16 @@ index 000..mno
     test_text = "Fixes ABC-123, relates to CORE-456. Also mentions xyz-789 but that's not a key."
     keys = extract_jira_keys(test_text, ["ABC", "CORE"])
     print(f"Found keys in '{test_text}': {keys}") 
+
+        # ... (existing test code for Jira key extraction) ...
+    print(f"Found keys in '{test_text}': {keys}")
+
+    print("\n--- Testing format_name ---")
+    formatted = format_name("  John ", " Doe")
+    print(f"Formatted name: '{formatted}' (Expected: 'Doe, John')")
+    formatted_invalid = format_name("", "Smith")
+    print(f"Formatted name (invalid): '{formatted_invalid}' (Expected: 'Invalid input')")
+
 
     print("\n--- Testing Hunk Line Mapping --- ")
     header1 = "@@ -5,5 +5,6 @@"
